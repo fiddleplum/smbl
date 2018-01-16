@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				background: black;
+				color: white;
+			}
+
+			.selected {
+				border: 1px solid yellow;
+			}
+
+			.variable {
+				font-style: italic;
+			}
+
+			.placeholder {}
+		</style>
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<script>
+			let variableNames = [];
+			let symbols = [];
+			class Symbol {
+				constructor(element) {
+					this._element = element;
+					$(element).click(() => {
+						this.select();
+					});
+				}
+				element() {
+					return this._element;
+				}
+				select() {
+					$(this._element).addClass('selected');
+				}
+			}
+			class Variable extends Symbol {
+				constructor(element, letter) {
+					super(element);
+					this._letter = letter;
+					$(element).addClass('variable');
+					$(element).html(this._letter);
+				}
+			}
+			class Placeholder extends Symbol {
+				constructor(element) {
+					super(element);
+					$(element).addClass('placeholder');
+					$(element).html('▢');
+				}
+			}
+			function setupVariables() {
+				variableNames = [];
+				for (let i = 0; i < 26; i++) {
+					variableNames.push(String.fromCodePoint('a'.codePointAt(0) + i));
+				}
+				for (let i = 0; i < 26; i++) {
+					variableNames.push(String.fromCodePoint('A'.codePointAt(0) + i));
+				}
+				for (let i = 0; i < 25; i++) {
+					variableNames.push(String.fromCodePoint('α'.codePointAt(0) + i));
+				}
+				for (let i = 0; i < 25; i++) {
+					variableNames.push(String.fromCodePoint('Α'.codePointAt(0) + i));
+				}
+			}
+			function init() {
+				setupVariables();
+
+				let symbol = $('#workspace').append('<span>sss</span>')[0].lastElementChild;
+				symbols.push(new Placeholder(symbol));
+			}
+		</script>
+	</head>
+	<body>
+		<div id="workspace"></div>
+		<script>
+			init();
+		</script>
+	</body>
+</html>
