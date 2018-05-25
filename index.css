@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	background: black;
+	color: white;
+	font-size: 24px;
+	line-height: 24px;
+	font-family: sans-serif;
+}
+
+#workspace {
+	width: 100vw;
+	height: calc(100% - 64px);
+}
+
+#message, #input {
+	width: 100vw;
+	height: 32px;
+	padding: 4px;
+}
+
+#message {
+	background: rgb(46, 46, 46);
+}
+
+#input {
+	display: block;
+	background: black;
+	color: white;
+	border: 0;
+	font-size: 24px;
+	line-height: 24px;
+}
+
+#input:focus {
+	outline: 0;
+}
+
+.selected {
+	border: 1px solid yellow;
+}
+
+.variable {
+	font-style: italic;
+}
+
+.placeholder {}
